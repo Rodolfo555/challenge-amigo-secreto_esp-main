@@ -31,6 +31,7 @@ function agregarAmigo() {
   inputAmigo.value = "";
   inputAmigo.focus();
   crearListaAmigos();
+  console.log(amigos);
 }
 
 // Funcion para eliminar amigo
@@ -70,10 +71,13 @@ function sortearAmigo() {
     alert("No hay amigos para sortear");
     return;
   }
-  let amigoSorteado = amigos[Math.floor(Math.random() * amigos.length)];
+
+  let listaSorteada = Math.floor(Math.random() * amigos.length);
+  let amigoSorteado = amigos[listaSorteada];
+  amigos.splice(listaSorteada, 1); // Remueve el amigo ya sorteado
+
   let resultado = document.getElementById("resultado");
   resultado.innerHTML = `El amigo sorteado es: ${amigoSorteado}`;
 
-  let limpiarLista = document.getElementById("listaAmigos");
-  limpiarLista.innerHTML = "";
+  crearListaAmigos(); // Actualiza la lista visual removiendo al amigo ya sorteado
 }
